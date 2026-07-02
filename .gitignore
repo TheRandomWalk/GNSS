@@ -7,3 +7,13 @@ dist/
 *.obj
 *.lib
 *.exe
+*.ninja
+CMakeCache.txt
+CMakeFiles/
+Testing/
+*.fc32
+*.sc16
+*.cs8
+*.csv
+*.bin
+*.dat
