@@ -1,17 +1,17 @@
 find_path(UHD_INCLUDE_DIR
     NAMES uhd/usrp/multi_usrp.hpp
-    HINTS "${SOFTGPS_UHD_ROOT}/include" "$ENV{UHD_DIR}/include"
+    HINTS "${GNSS_UHD_ROOT}/include" "$ENV{UHD_DIR}/include"
 )
 
 find_library(UHD_LIBRARY
     NAMES uhd
-    HINTS "${SOFTGPS_UHD_ROOT}/lib" "$ENV{UHD_DIR}/lib"
+    HINTS "${GNSS_UHD_ROOT}/lib" "$ENV{UHD_DIR}/lib"
 )
 
 find_path(UHD_BOOST_INCLUDE_DIR
     NAMES boost/config.hpp
     HINTS
-        "${SOFTGPS_UHD_ROOT}/include"
+        "${GNSS_UHD_ROOT}/include"
         "$ENV{BOOST_ROOT}"
         "$ENV{CONDA_PREFIX}/Library/include"
         "$ENV{CONDA_PREFIX}/include"

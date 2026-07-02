@@ -1,9 +1,9 @@
-#include "softgps/ca_code.hpp"
+#include "gnss/ca_code.hpp"
 
 #include <array>
 #include <stdexcept>
 
-namespace softgps {
+namespace gnss {
 namespace {
 
 constexpr std::array<std::pair<int, int>, 33> g2_taps{{
@@ -63,4 +63,4 @@ std::vector<float> sampled_ca_code(int prn, double sample_rate_hz, int samples_p
     return sampled;
 }
 
-} // namespace softgps
+} // namespace gnss

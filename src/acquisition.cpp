@@ -1,5 +1,5 @@
-#include "softgps/acquisition.hpp"
-#include "softgps/ca_code.hpp"
+#include "gnss/acquisition.hpp"
+#include "gnss/ca_code.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -7,7 +7,7 @@
 #include <numbers>
 #include <numeric>
 
-namespace softgps {
+namespace gnss {
 namespace {
 
 struct Peak {
@@ -91,4 +91,4 @@ std::vector<AcquisitionResult> acquire(
     return results;
 }
 
-} // namespace softgps
+} // namespace gnss

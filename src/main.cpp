@@ -1,4 +1,4 @@
-#include "softgps/acquisition.hpp"
+#include "gnss/acquisition.hpp"
 
 #include <uhd/stream.hpp>
 #include <uhd/types/tune_request.hpp>
@@ -38,9 +38,9 @@ struct Options {
 
 void print_usage() {
     std::cout
-        << "softgps - receptor GPS L1 C/A por software para Ettus B200\n\n"
+        << "gnss - receptor GPS L1 C/A por software para Ettus B200\n\n"
         << "Uso:\n"
-        << "  softgps [opciones]\n\n"
+        << "  gnss [opciones]\n\n"
         << "Opciones:\n"
         << "  --args STR             argumentos UHD, ej. \"type=b200\"\n"
         << "  --antenna RX2|TX/RX    entrada RF del B200 (default RX2)\n"
@@ -183,7 +183,7 @@ std::vector<std::complex<float>> capture_samples(const Options& options) {
     return samples;
 }
 
-void write_csv(const std::string& path, const std::vector<softgps::AcquisitionResult>& results) {
+void write_csv(const std::string& path, const std::vector<gnss::AcquisitionResult>& results) {
     std::ofstream output(path);
     output << "prn,detected,doppler_hz,code_phase_samples,metric,cn0_dbhz\n";
     for (const auto& result : results) {
@@ -208,14 +208,14 @@ int main(int argc, char** argv) {
         }
 
         auto samples = capture_samples(options);
-        softgps::AcquisitionConfig config;
+        gnss::AcquisitionConfig config;
         config.sample_rate_hz = options.rate;
         config.doppler_min_hz = options.doppler_min;
         config.doppler_max_hz = options.doppler_max;
         config.doppler_step_hz = options.doppler_step;
         config.threshold = options.threshold;
 
-        const auto results = softgps::acquire(samples, config, options.first_prn, options.last_prn);
+        const auto results = gnss::acquire(samples, config, options.first_prn, options.last_prn);
         std::cout << "\nPRN  Estado  Doppler(Hz)  FaseCodigo  Metrica  C/N0 est\n";
         for (const auto& result : results) {
             std::cout << std::setw(3) << result.prn << "  "

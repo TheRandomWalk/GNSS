@@ -3,7 +3,7 @@
 #include <complex>
 #include <vector>
 
-namespace softgps {
+namespace gnss {
 
 struct AcquisitionConfig {
     double sample_rate_hz = 2.046e6;
@@ -28,4 +28,4 @@ std::vector<AcquisitionResult> acquire(
     int first_prn,
     int last_prn);
 
-} // namespace softgps
+} // namespace gnss

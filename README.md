@@ -1,4 +1,4 @@
-# SoftGPS para Ettus B200
+# gnss para Ettus B200
 
 Receptor GPS L1 C/A por software en C++ para linea de comando. Esta version
 inicial, basada en la estructura de `..\sdrtv`, usa UHD para capturar IQ desde
@@ -32,7 +32,7 @@ Requiere Visual Studio C++ tools, Ninja, CMake y UHD. Si ya usas el entorno de
 Si UHD esta en otra ruta:
 
 ```powershell
-cmake -S . -B build -G Ninja -DSOFTGPS_UHD_ROOT="C:/Program Files/UHD"
+cmake -S . -B build -G Ninja -DGNSS_UHD_ROOT="C:/Program Files/UHD"
 cmake --build build
 ```
 
@@ -41,7 +41,7 @@ cmake --build build
 Con una antena GPS activa conectada al B200:
 
 ```powershell
-.\build\softgps.exe --antenna RX2 --gain 45 --seconds 0.08
+.\build\gnss.exe --antenna RX2 --gain 45 --seconds 0.08
 ```
 
 Opciones utiles:
@@ -62,7 +62,7 @@ Opciones utiles:
 Ejemplo con salida CSV:
 
 ```powershell
-.\build\softgps.exe --args "type=b200" --antenna RX2 --gain 50 --csv gps-acq.csv
+.\build\gnss.exe --args "type=b200" --antenna RX2 --gain 50 --csv gnss-acq.csv
 ```
 
 ## Notas RF
