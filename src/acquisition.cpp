@@ -6,6 +6,7 @@
 #include <complex>
 #include <numbers>
 #include <numeric>
+#include <stdexcept>
 
 namespace gnss {
 namespace {
@@ -24,6 +25,18 @@ double average_power(const std::vector<std::complex<float>>& samples, int count)
     return count == 0 ? 0.0 : sum / static_cast<double>(count);
 }
 
+void validate_config(const AcquisitionConfig& config) {
+    if (config.sample_rate_hz <= 0.0) {
+        throw std::invalid_argument("sample_rate_hz must be positive");
+    }
+    if (config.doppler_step_hz <= 0.0) {
+        throw std::invalid_argument("doppler_step_hz must be positive");
+    }
+    if (config.doppler_min_hz > config.doppler_max_hz) {
+        throw std::invalid_argument("doppler_min_hz must be <= doppler_max_hz");
+    }
+}
+
 } // namespace
 
 std::vector<AcquisitionResult> acquire(
@@ -31,6 +44,10 @@ std::vector<AcquisitionResult> acquire(
     const AcquisitionConfig& config,
     int first_prn,
     int last_prn) {
+    validate_config(config);
+    first_prn = std::clamp(first_prn, 1, 32);
+    last_prn = std::clamp(last_prn, first_prn, 32);
+
     const int samples_per_ms = static_cast<int>(std::llround(config.sample_rate_hz / 1000.0));
     const int coherent_samples = std::min(samples_per_ms, static_cast<int>(samples.size()));
     std::vector<AcquisitionResult> results;
