@@ -136,3 +136,4 @@ Salida principal:
 ## Notas RF
 
 GPS L1 llega muy debil. Usa una antena GPS activa con alimentacion adecuada externa o bias-tee compatible, vista clara al cielo y evita saturar el B200. Si no aparecen locks, prueba ganancias entre 35 y 60 dB, revisa `uhd_find_devices`, confirma que no haya overflows y usa capturas de al menos 80 ms para inspeccion inicial.
+# GPS
